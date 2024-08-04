@@ -18,15 +18,25 @@ export default function Home() {
   }, []);
 
   const fetchRandomJoke = async () => {
-    const response = await fetch('http://localhost:3003/jokes/random');
-    const joke: Joke = await response.json();
-    setRandomJoke(joke);
+    try {
+      const response = await fetch('http://localhost:3003/jokes/random');
+      const joke: Joke = await response.json();
+      setRandomJoke(joke);
+    } catch (error) {
+      console.error('Failed to fetch random joke:', error);    
+    }
   };
 
   const fetchJokeTypes = async () => {
-    const response = await fetch('http://localhost:3003/jokes/types');
-    const types: string[] = await response.json();
-    setJokeTypes(types);
+    try {
+      const response = await fetch('http://localhost:3003/jokes/types');
+
+      const typesData: { id: number; type: string }[] = await response.json();
+      const types = typesData.map((type) => type.type);
+      setJokeTypes(types);
+    } catch (error) {
+      console.error('Failed to fetch jokeTypes:', error);    
+    }
   };
 
   return (
