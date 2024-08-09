@@ -23,7 +23,7 @@ This repository contains the frontend application that interacts with the backen
 
    ```bash
    git clone <repository_url>
-   cd frontend-app
+   cd jokes-frontend
    ```
 2. Install dependencies:
 
